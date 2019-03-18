@@ -1,9 +1,9 @@
-import gmpy
+import gmpy2
 
 def close_factor(n, b):
  
     # approximate phi
-    phi_approx = n - 2 * gmpy.sqrt(n) + 1
+    phi_approx = n - 2 * gmpy2.isqrt(n) + 1
  
     # create a look-up table
     look_up = {}
@@ -13,7 +13,7 @@ def close_factor(n, b):
         z = (z * 2) % n
  
     # check the table
-    mu = gmpy.invert(pow(2, phi_approx, n), n)
+    mu = gmpy2.invert(pow(2, phi_approx, n), n)
     fac = pow(2, b, n)
     j = 0
  
@@ -27,8 +27,8 @@ def close_factor(n, b):
             return
  
     m = n - phi + 1
-    roots = (m - gmpy.sqrt(m ** 2 - 4 * n)) // 2, \
-            (m + gmpy.sqrt(m ** 2 - 4 * n)) // 2
+    roots = (m - gmpy2.isqrt(m ** 2 - 4 * n)) // 2, \
+            (m + gmpy2.isqrt(m ** 2 - 4 * n)) // 2
  
     return roots
  
