@@ -15,16 +15,14 @@ def close_factor(n, b):
     # check the table
     mu = gmpy2.invert(pow(2, phi_approx, n), n)
     fac = pow(2, b, n)
-    j = 0
- 
-    while True:
+
+    for i in range(0, b + 1):
         mu = (mu * fac) % n
-        j += b
         if mu in look_up:
-            phi = phi_approx + (look_up[mu] - j)
+            phi = phi_approx + (look_up[mu] - i * b)
             break
-        if j > b * b:
-            return
+    else:
+        return None
  
     m = n - phi + 1
     roots = (m - gmpy2.isqrt(m ** 2 - 4 * n)) // 2, \
